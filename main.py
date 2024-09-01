@@ -100,7 +100,7 @@ def push_to_github():
     os.system('rm -f last*')
     os.system('touch "%s"' % upd_badge)
     os.system('git add .')
-    os.system('git commit -m "regular push"')
+    os.system('git commit -m "upd"')
     os.system('git push')
 
 
