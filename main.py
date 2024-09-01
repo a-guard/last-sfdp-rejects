@@ -74,28 +74,27 @@ def write_list(filename: str, how_many=None):
 
 def iteration():
     t = time.time()
-    # load_list(LIST_PATH)
+    load_list(LIST_PATH)
     
-    # limit = 100
-    # page_num = 0
-    # while 1:
-    #     print('parsing page: %d' % page_num)
-    #     if not parse_page(page_num*limit, limit): break
-    #     page_num += 1
+    limit = 100
+    page_num = 0
+    while 1:
+        print('parsing page: %d' % page_num)
+        if not parse_page(page_num*limit, limit): break
+        page_num += 1
 
-    # with ThreadPoolExecutor(max_workers=1) as pool:
-    #     for _ in pool.map(parse_validator, rejected_validators): pass
+    with ThreadPoolExecutor(max_workers=1) as pool:
+        for _ in pool.map(parse_validator, rejected_validators): pass
 
-    # write_list(LIST_PATH)
-    # write_list(SECOND_LIST_PATH, 1000)
+    write_list(LIST_PATH)
+    write_list(SECOND_LIST_PATH, 1000)
     print('done in %ds' % (time.time() - t))
-    # push_to_github()
+    push_to_github()
 
 
 def push_to_github():
     dt = str(datetime.utcnow()).split('.')[0] + ' UTC'
     upd_badge = 'last ' + dt
-    # os.system('ls')
     print(upd_badge)
     os.system('rm -f last*')
     os.system('touch "%s"' % upd_badge)
@@ -106,16 +105,15 @@ def push_to_github():
 
 def main():
     while 1:
-        try:
-            iteration()
+        try: iteration()
         except KeyboardInterrupt: return
         except: print(format_exc())
         finally: time.sleep(3600 * 12)
         
 
 if __name__ == '__main__':
-    # main()
+    main()
     # iteration()
     # parse_validator('JCmdhNCyzypryaQUGLGxbCM366dScTD4tVy5ooSWyaBZ')
     # load_list()
-    push_to_github()
+    # push_to_github()
